@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<style type="text/css">
+	
+	body{
+		background: #f5f6fa;
+		padding: 29px;
+	}
+
+	.h {
+	border: 5px dashed lightblue;
+	border-width:0.5px;
+	}
+
+	#button{
+
+		margin-top: 20px;
+        margin-bottom: 50px;
+		align-content: center;
+	}
+	h1{
+		margin-top: 20px;
+		margin-bottom: 30px;
+	}
+
+    .alert{
+        margin-top: 50px;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+	.spam{
+		color:red;
+	}
+
+	.not_spam{
+		color:green;
+	}
+
+</style>
+<body>
+		<form method="POST" class="col-lg-6 offset-lg-3" action="{{ url_for('predict') }}">
+		 <div class="row justify-content-center">
+		 	<h1 class="h">Spam Email Classification</h1>
+           
+                <textarea class="form-control" id="text" rows="3" name="text" required>
+                </textarea>
+		    <input type="submit" id="button" class="btn btn-primary" name="submit">
+             
+		</div>
+		</form>
+			
+
+        <div class="alert alert-primary" role="alert">
+            <center>     <h2 id='mail'> {{ prediction_text }} </h1> </center>
+        </div>
+	<center>
+		<div class="card border-primary mb-3" style="max-width: 18rem; margin-top:30px">
+			<div class="card-header">Spam & Not Spam Probability</div>
+			<div class="card-body">
+			<p class="card-text spam" >Spam : {{ spam_percentage }}</p>
+			<p class="card-text not_spam" >Not Spam : {{ not_spam_percentage }}</p>
+		</div>
+	</center>
+</body>
+</html>
